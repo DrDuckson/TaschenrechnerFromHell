@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.730,=C:\Users\gorea\Documents\Embarcadero\Studio\Projekte\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.617,C:\Users\gorea\Desktop\DelphiProjekte\Tascherechnerman.dproj=C:\Users\gorea\Documents\Embarcadero\Studio\Projekte\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.183,C:\Users\gorea\Desktop\DelphiProjekte\Taschenrechner.dfm=C:\Users\gorea\Documents\Embarcadero\Studio\Projekte\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.183,C:\Users\gorea\Desktop\DelphiProjekte\Taschenrechner.pas=C:\Users\gorea\Documents\Embarcadero\Studio\Projekte\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>
