@@ -55,9 +55,9 @@ var
   Rechner: TRechner;
   iZahl1, iZahl2, iZahl3, iZahl4, iZahl5, iZahl6, iZahl7, iZahl8, iZahl9, iZahl0: Integer;
   iEingabe1, iEingabe2, iErgebnis: Integer;
-  dEingabe1, dEingabe2, dErgebnis: double;
-  bOperator: Boolean;
-  sAusgabe: String;
+  dEingabe1, dEingabe2, dErgebnis, dKurz: double;
+  bOperator, bIstGleich: Boolean;
+  sAusgabe, sEingabe1, sEingabe2: String;
 
 implementation
 {$R *.dfm}
@@ -80,41 +80,39 @@ begin
   bOperator := True;
 end;
 
+procedure TRechner.btnMultiplikationClick(Sender: TObject);
+begin
+  lblOperator.Caption := 'x';
+  bOperator := True;
+end;
+
 procedure TRechner.btnGleichzeichenClick(Sender: TObject);
 begin
   begin
   if lblOperator.Caption = '+' then
      begin
-     iErgebnis := iEingabe1 + iEingabe2;
+     iErgebnis := sEingabe1.ToInteger + sEingabe2.ToInteger;
      sAusgabe := iErgebnis.ToString;
      end
    else if lblOperator.Caption = '-' then
      begin
-     iErgebnis := iEingabe1 - iEingabe2;
+     iErgebnis := sEingabe1.ToInteger - sEingabe2.ToInteger;
      sAusgabe := iErgebnis.ToString;
      end
    else if lblOperator.Caption = 'x' then
      begin
-     iErgebnis := iEingabe1 * iEingabe2;
+     iErgebnis := sEingabe1.ToInteger * sEingabe2.ToInteger;
      sAusgabe := iErgebnis.ToString;
      end
    else if lblOperator.Caption = '/' then
      begin
-     dEingabe1 := iEingabe1;
-     dEingabe2 := iEingabe2;
-     dErgebnis := iErgebnis;
-     dErgebnis := dEingabe1 / dEingabe2;
-     sAusgabe := dErgebnis.ToString;
+     dErgebnis := sEingabe1.ToDouble / sEingabe2.ToDouble;
+     sAusgabe := Format('%.2f', [dErgebnis]);
      end;
   end;
   lblErgebnis.Caption := sAusgabe;
   bOperator := False;
-end;
-
-procedure TRechner.btnMultiplikationClick(Sender: TObject);
-begin
-  lblOperator.Caption := 'x';
-  bOperator := True;
+  bIstGleich := True;
 end;
 
 procedure TRechner.btnCleanClick(Sender: TObject);
@@ -122,11 +120,15 @@ begin
   iErgebnis := 0;
   iEingabe1 := 0;
   iEingabe2 := 0;
+  sAusgabe := '';
+  sEingabe1 := '';
+  sEingabe2 := '';
   lblEingabe1.Caption := '';
   lblEingabe2.Caption := '';
   lblErgebnis.Caption := '';
   lblOperator.Caption := '';
   bOperator := False;
+  bIstGleich := False;
 end;
 
 procedure TRechner.btnZahl1Click(Sender: TObject);
@@ -134,13 +136,13 @@ begin
   iZahl1 := 1;
   if bOperator = False then
     begin
-      iEingabe1 := iZahl1;
-      lblEingabe1.Caption := IntToStr(iEingabe1);
+      sEingabe1 := sEingabe1 + iZahl1.ToString;
+      lblEingabe1.Caption := sEingabe1;
     end
-    else
+  else
     begin
-      iEingabe2 := iZahl1;
-      lblEingabe2.Caption := IntToStr(iEingabe2);
+      sEingabe2 := sEingabe2 + iZahl1.ToString;
+      lblEingabe2.Caption := sEingabe2;
     end;
 end;
 
@@ -149,13 +151,13 @@ begin
   iZahl2 := 2;
   if bOperator = False then
     begin
-      iEingabe1 := iZahl2;
-      lblEingabe1.Caption := IntToStr(iEingabe1);
+      sEingabe1 := sEingabe1 + iZahl2.ToString;
+      lblEingabe1.Caption := sEingabe1;
     end
-    else
+  else
     begin
-      iEingabe2 := iZahl2;
-      lblEingabe2.Caption := IntToStr(iEingabe2);
+      sEingabe2 := sEingabe2 + iZahl2.ToString;
+      lblEingabe2.Caption := sEingabe2;
     end;
 end;
 
@@ -164,13 +166,13 @@ begin
   iZahl3 := 3;
   if bOperator = False then
     begin
-      iEingabe1 := iZahl3;
-      lblEingabe1.Caption := IntToStr(iEingabe1);
+      sEingabe1 := sEingabe1 + iZahl3.ToString;
+      lblEingabe1.Caption := sEingabe1;
     end
   else
     begin
-      iEingabe2 := iZahl3;
-      lblEingabe2.Caption := IntToStr(iEingabe2);
+      sEingabe2 := sEingabe2 + iZahl3.ToString;
+      lblEingabe2.Caption := sEingabe2;
     end;
 end;
 
@@ -179,13 +181,13 @@ begin
   iZahl4 := 4;
   if bOperator = False then
     begin
-      iEingabe1 := iZahl4;
-      lblEingabe1.Caption := IntToStr(iEingabe1);
+      sEingabe1 := sEingabe1 + iZahl4.ToString;
+      lblEingabe1.Caption := sEingabe1;
     end
   else
     begin
-      iEingabe2 := iZahl4;
-      lblEingabe2.Caption := IntToStr(iEingabe2);
+      sEingabe2 := sEingabe2 + iZahl4.ToString;
+      lblEingabe2.Caption := sEingabe2;
     end;
 end;
 
@@ -194,13 +196,13 @@ begin
   iZahl5 := 5;
   if bOperator = False then
     begin
-      iEingabe1 := iZahl5;
-      lblEingabe1.Caption := IntToStr(iEingabe1);
+      sEingabe1 := sEingabe1 + iZahl5.ToString;
+      lblEingabe1.Caption := sEingabe1;
     end
   else
     begin
-      iEingabe2 := iZahl5;
-      lblEingabe2.Caption := IntToStr(iEingabe2);
+      sEingabe2 := sEingabe2 + iZahl5.ToString;
+      lblEingabe2.Caption := sEingabe2;
     end;
 end;
 
@@ -209,13 +211,13 @@ begin
   iZahl6 := 6;
   if bOperator = False then
     begin
-      iEingabe1 := iZahl6;
-      lblEingabe1.Caption := IntToStr(iEingabe1);
+      sEingabe1 := sEingabe1 + iZahl6.ToString;
+      lblEingabe1.Caption := sEingabe1;
     end
   else
     begin
-      iEingabe2 := iZahl6;
-      lblEingabe2.Caption := IntToStr(iEingabe2);
+      sEingabe2 := sEingabe2 + iZahl6.ToString;
+      lblEingabe2.Caption := sEingabe2;
     end;
 end;
 
@@ -224,13 +226,13 @@ begin
   iZahl7 := 7;
   if bOperator = False then
     begin
-      iEingabe1 := iZahl7;
-      lblEingabe1.Caption := IntToStr(iEingabe1);
+      sEingabe1 := sEingabe1 + iZahl7.ToString;
+      lblEingabe1.Caption := sEingabe1;
     end
   else
     begin
-      iEingabe2 := iZahl7;
-      lblEingabe2.Caption := IntToStr(iEingabe2);
+      sEingabe2 := sEingabe2 + iZahl7.ToString;
+      lblEingabe2.Caption := sEingabe2;
     end;
 end;
 
@@ -239,13 +241,13 @@ begin
   iZahl8 := 8;
   if bOperator = False then
     begin
-      iEingabe1 := iZahl8;
-      lblEingabe1.Caption := IntToStr(iEingabe1);
+      sEingabe1 := sEingabe1 + iZahl8.ToString;
+      lblEingabe1.Caption := sEingabe1;
     end
   else
     begin
-      iEingabe2 := iZahl8;
-      lblEingabe2.Caption := IntToStr(iEingabe2);
+      sEingabe2 := sEingabe2 + iZahl8.ToString;
+      lblEingabe2.Caption := sEingabe2;
     end;
 end;
 
@@ -254,13 +256,13 @@ begin
   iZahl9 := 9;
   if bOperator = False then
     begin
-      iEingabe1 := iZahl9;
-      lblEingabe1.Caption := IntToStr(iEingabe1);
+      sEingabe1 := sEingabe1 + iZahl9.ToString;
+      lblEingabe1.Caption := sEingabe1;
     end
   else
     begin
-      iEingabe2 := iZahl9;
-      lblEingabe2.Caption := IntToStr(iEingabe2);
+      sEingabe2 := sEingabe2 + iZahl9.ToString;
+      lblEingabe2.Caption := sEingabe2;
     end;
 end;
 
@@ -269,13 +271,13 @@ begin
   iZahl0 := 0;
   if bOperator = False then
     begin
-      iEingabe1 := iZahl0;
-      lblEingabe1.Caption := IntToStr(iEingabe1);
+      sEingabe1 := sEingabe1 + iZahl0.ToString;
+      lblEingabe1.Caption := sEingabe1;
     end
   else
     begin
-      iEingabe2 := iZahl0;
-      lblEingabe2.Caption := IntToStr(iEingabe2);
+      sEingabe2 := sEingabe2 + iZahl0.ToString;
+      lblEingabe2.Caption := sEingabe2;
     end;
 end;
 
