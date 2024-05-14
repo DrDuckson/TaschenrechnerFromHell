@@ -306,7 +306,7 @@ object Rechner: TRechner
     Top = 264
     Width = 75
     Height = 75
-    Caption = '%'
+    Caption = '/'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -40
